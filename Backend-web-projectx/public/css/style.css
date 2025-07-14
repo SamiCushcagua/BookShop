@@ -1,27 +1,113 @@
-/* Estilos básicos para probar */
+/* Paleta de colores */
+:root {
+    --parchment: #F2E9D8;
+    --sand: #D7C4A3;
+    --olive: #C2CBA3;
+    --sage: #8B9375;
+    --bark: #6D5C45;
+    --olivewood: #2E2E20;
+}
+
 body {
-    background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
+    background-color: var(--parchment);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: var(--olivewood);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-h1 {
-    color: #333;
-    text-align: center;
+.main-header {
+    background: linear-gradient(90deg, var(--sand) 60%, var(--olive) 100%);
+    box-shadow: 0 2px 8px rgba(109, 92, 69, 0.08);
+    padding: 0;
 }
 
-nav {
-    background-color: #333;
-    padding: 10px;
-    text-align: center;
+.main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
 }
 
-nav a {
-    color: white;
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--bark);
+    letter-spacing: 2px;
+}
+
+.nav-links a {
+    color: var(--olivewood);
     text-decoration: none;
-    margin: 0 10px;
-    padding: 5px 10px;
+    margin: 0 0.7rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    background: transparent;
 }
 
-nav a:hover {
-    background-color: #555;
+.nav-links a:hover {
+    background: var(--sage);
+    color: var(--parchment);
+}
+
+.main-content {
+    flex: 1;
+    max-width: 900px;
+    margin: 2rem auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(109, 92, 69, 0.07);
+    padding: 2.5rem 2rem;
+    min-height: 400px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--bark);
+    margin-top: 0;
+}
+
+.main-footer {
+    background: var(--olivewood);
+    color: var(--parchment);
+    text-align: center;
+    padding: 1.2rem 0;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-top: 2rem;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+/* Mejorar formularios y botones */
+input, select, textarea {
+    border: 1px solid var(--sand);
+    border-radius: 5px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    background: var(--parchment);
+    color: var(--olivewood);
+}
+
+button, .btn {
+    background: var(--sage);
+    color: var(--parchment);
+    border: none;
+    border-radius: 5px;
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+button:hover, .btn:hover {
+    background: var(--bark);
+    color: var(--parchment);
 }

@@ -1,5 +1,5 @@
-@extends('layout.standard')
+@extends('layouts.app')
 
 @section('content')
-    <h1>hola</h1>
+<h1>Add Book</h1>
 @endsection

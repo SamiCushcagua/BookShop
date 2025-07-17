@@ -11,12 +11,16 @@
         <nav class="main-nav">
             <div class="logo">📚 BookShop</div>
             <div class="nav-links">
-                <a href="Welcome">Inicio</a>
-                <a href="profiel">Perfil</a>
-                <a href="test">Test</a>
+                <a href="{{ route('start') }}">Inicio</a>
+                <a href="{{ route('profiel') }}" >Perfil</a>
+                <a href="{{ route('addBook') }}" >Add Book </a>
+                
+
             </div>
         </nav>
+      
     </header>
+    @
     <main class="main-content">
         @yield('content')
         <h1>hola</h1>

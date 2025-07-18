@@ -15,9 +15,14 @@
             <nav class="main-nav">
                 <div class="logo">📚 BookShop</div>
                 <div class="nav-links">
-                    <a href="{{ route('start') }}">Inicio</a>
-                    <a href="{{ route('profiel') }}">Perfil</a>
-                    <a href="{{ route('addBook') }}">Agregar Libro</a>
+                    <a href="{{ route('start') }}">Start</a>
+                    <a href="{{ route('allUsers') }}">All Users</a>
+                    @auth
+                    <a href="{{ route('addBook') }}">Add Book</a>
+                    <a href="{{ route('profiel') }}">Profile</a>
+                    @endauth
+
+
                 </div>
                 
                 <!-- VERIFICAR SI EL USUARIO ESTÁ LOGUEADO -->
@@ -26,13 +31,13 @@
                         <span>{{ Auth::user()->name }}</span>
                         <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                             @csrf
-                            <button type="submit" class="btn-logout">Cerrar Sesión</button>
+                            <button type="submit" class="btn-logout">Logout</button>
                         </form>
                     </div>
                 @else
                     <div class="user-menu">
-                        <a href="{{ route('login') }}" class="btn-login">Iniciar Sesión</a>
-                        <a href="{{ route('register') }}" class="btn-register">Registrarse</a>
+                        <a href="{{ route('login') }}" class="btn-login">Login</a>
+                        <a href="{{ route('register') }}" class="btn-register">Register</a>
                     </div>
                 @endauth
             </nav>
@@ -47,6 +52,7 @@
 
             <div class="content-wrapper">
                 @yield('content')
+                @yield('content2')
             </div>
         </main>
 

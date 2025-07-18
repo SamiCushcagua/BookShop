@@ -12,6 +12,18 @@ Route::get('profiel', function () {
     return view('profiel');
 })->name('profiel');
 
+
+Route::get('start', function () {
+    return view('view.start');
+})->name('view.start');
+
+
+Route::get('allUsers', function () {
+    return view('allUsers');
+})->name('allUsers');
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('addBook', function () {
         return view('addBook');
@@ -27,9 +39,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('start', function () {
-    return view('view.start');
-})->name('view.start');
 
 // AGREGAR ESTA LÍNEA AL FINAL:
 require __DIR__.'/auth.php';

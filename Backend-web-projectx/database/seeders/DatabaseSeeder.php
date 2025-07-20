@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
             'admin' => true,
             'password' => Hash::make('admin123*'),
+            'birthdate' => '1990-01-01',
+            'about' => 'Admin',
+        
         ]);
     }
 }

@@ -114,6 +114,7 @@ body {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 2rem;
+    width: 90%;      /* <-- Esto hace que ocupe el 90% del ancho */
 }
 
 /* Header de página */
@@ -137,6 +138,8 @@ body {
     border-radius: 12px;
     box-shadow: 0 2px 16px rgba(109, 92, 69, 0.07);
     min-height: 400px;
+    width: 90%;
+    margin: 0 auto; /* Esto centra el contenedor */
 }
 
 /* Footer */

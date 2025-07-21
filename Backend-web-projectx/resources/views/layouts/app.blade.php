@@ -17,6 +17,7 @@
                 <div class="nav-links">
                     <a href="{{ route('start') }}">Start</a>
                     <a href="{{ route('allUsers') }}">All Users</a>
+                    <a href="{{ route('dashboard') }}">Dashboard</a>
                     @auth
                     <a href="{{ route('addBook') }}">Add Book</a>
                     <a href="{{ route('profiel') }}">Profile</a>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BookController;
 
 Route::get('/', function () {
     return view('start');
@@ -13,7 +14,11 @@ Route::get('start', function () {
 })->name('view.start');
 
 // Ruta para allUsers (mantener la que ya tenías)
-Route::get('allUsers', [UserController::class, 'index'])->name('allUsers');
+Route::get('allUsers', [UserController::class, 'index'])->name('allUsers'); 
+
+Route::get('dashboard', [BookController::class, 'index'])->name('dashboard');
+
+Route::resource('books', BookController::class)->middleware('auth');
 
 // Rutas de perfil
 Route::middleware('auth')->group(function () {
@@ -31,10 +36,7 @@ Route::middleware('auth')->group(function () {
         return view('addBook');
     })->name('addBook');
     
-    Route::get('dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
+    
     Route::get('profile', function () {
         return view('view.profile');
     })->name('view.profile');

@@ -21,10 +21,10 @@ return new class extends Migration
             $table->string('isbn')->nullable();         // ISBN del libro
             $table->string('publisher')->nullable();    // Editorial
             $table->integer('publication_year')->nullable(); // Año de publicación
-            $table->string('condition')->default('good'); // Estado del libro (new, good, fair, poor)
+            $table->string('condition')->nullable(); // Estado del libro (new, good, fair, poor)
             $table->string('cover_image')->nullable();  // Imagen de la portada
             $table->string('category')->nullable();     // Categoría (ficción, no-ficción, etc.)
-            $table->string('language')->default('es');  // Idioma
+            $table->string('language')->nullable();  // Idioma
             $table->boolean('is_available')->default(true); // Disponible para venta
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Usuario que vende el libro
             $table->timestamps();

@@ -34,20 +34,27 @@ class BookController extends Controller
             'description' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'isbn' => 'required|string|max:255',
-            'publisher' => 'required|string|max:255',
-            'publication_year' => 'required|integer|min:0',
-            'condition' => 'required|string|max:255',
-            'cover_image' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
-            'language' => 'required|string|max:255',
-            'is_available' => 'required|boolean',
+            'isbn' => 'nullable|string|max:255',
+            'publisher' => 'nullable|string|max:255',
+            'publication_year' => 'nullable|integer|min:0',
+            'condition' => 'nullable|string|max:255',
+            'cover_image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'category' => 'nullable|string|max:255',
+            'language' => 'nullable|string|max:255',
+            'is_available' => 'required|in:0,1',
             
             // ...otros campos y validaciones...
         ]);
+
+
+        if ($request->hasFile('cover_image')) {
+            $path = $request->file('cover_image')->store('books', 'public');
+            $validated['cover_image'] = $path;
+        }
+
         $validated['user_id'] = auth()->id();
         Book::create($validated);
-        return redirect()->route('books.index')->with('success', 'Book added!');
+        return redirect()->route('dashboard')->with('success', 'Book added!');
     }
 
     /**

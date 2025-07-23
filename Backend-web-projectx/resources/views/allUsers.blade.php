@@ -27,63 +27,65 @@
     @endif
 
     {{-- Sección: Crear nuevo usuario (solo para admins) --}}
-    @if(auth()->user()->admin)
-    <div class="profile-section">
-        <h2>Crear Nuevo Usuario</h2>
-        <form method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data" class="profile-form">
-            @csrf
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="fname">First name:</label>
-                    <input type="text" id="fname" name="fname" value="{{ old('fname') }}" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="lname">Last name:</label>
-                    <input type="text" id="lname" name="lname" value="{{ old('lname') }}" required>
-                </div>
+    @auth
+        @if(auth()->user()->admin)
+            <div class="profile-section">
+                <h2>Crear Nuevo Usuario</h2>
+                <form method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data" class="profile-form">
+                    @csrf
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fname">First name:</label>
+                            <input type="text" id="fname" name="fname" value="{{ old('fname') }}" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lname">Last name:</label>
+                            <input type="text" id="lname" name="lname" value="{{ old('lname') }}" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" value="{{ old('email') }}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birthdate">Birthdate:</label>
+                        <input type="date" id="birthdate" name="birthdate" value="{{ old('birthdate') }}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="about">About:</label>
+                        <textarea id="about" name="about">{{ old('about') }}</textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="image">Image:</label>
+                        <input type="file" id="image" name="image" accept="image/*">
+                        <small>Formatos permitidos: JPG, PNG, GIF. Tamaño máximo: 2MB</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="admin">Admin:</label>
+                        <select id="admin" name="admin" required>
+                            <option value="0" {{ old('admin') == '0' ? 'selected' : '' }}>user</option>
+                            <option value="1" {{ old('admin') == '1' ? 'selected' : '' }}>admin</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Crear Usuario</button>
+                    </div>
+                </form>
             </div>
-            
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="{{ old('email') }}" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="birthdate">Birthdate:</label>
-                <input type="date" id="birthdate" name="birthdate" value="{{ old('birthdate') }}">
-            </div>
-            
-            <div class="form-group">
-                <label for="about">About:</label>
-                <textarea id="about" name="about">{{ old('about') }}</textarea>
-            </div>
-            
-            <div class="form-group">
-                <label for="image">Image:</label>
-                <input type="file" id="image" name="image" accept="image/*">
-                <small>Formatos permitidos: JPG, PNG, GIF. Tamaño máximo: 2MB</small>
-            </div>
-            
-            <div class="form-group">
-                <label for="admin">Admin:</label>
-                <select id="admin" name="admin" required>
-                    <option value="0" {{ old('admin') == '0' ? 'selected' : '' }}>user</option>
-                    <option value="1" {{ old('admin') == '1' ? 'selected' : '' }}>admin</option>
-                </select>
-            </div>
-            
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Crear Usuario</button>
-            </div>
-        </form>
-    </div>
-    @endif
+        @endif
+    @endauth
 
     {{-- Sección: Lista de usuarios --}}
     <div class="profile-section">
@@ -123,29 +125,31 @@
                         </div>
                         
                         {{-- Solo administradores pueden ver estos botones --}}
-                        @if(auth()->user()->admin)
-                            <div class="user-actions">
-                                {{-- Formulario para cambiar rol --}}
-                                <form method="POST" action="{{ route('users.toggle-role', $user) }}" style="display: inline;">
-                                    @csrf
-                                    <input type="hidden" name="admin" value="{{ $user->admin ? '0' : '1' }}">
-                                    <button type="submit" class="btn btn-sm {{ $user->admin ? 'btn-warning' : 'btn-success' }}" 
-                                            onclick="return confirm('¿Estás seguro de que quieres cambiar el rol de este usuario?')">
-                                        {{ $user->admin ? 'Quitar Admin' : 'Hacer Admin' }}
-                                    </button>
-                                </form>
-                                
-                                {{-- Formulario para eliminar --}}
-                                <form method="POST" action="{{ route('users.destroy', $user) }}" style="display: inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" 
-                                            onclick="return confirm('¿Estás seguro de que quieres eliminar este usuario?')">
-                                        Eliminar
-                                    </button>
-                                </form>
-                            </div>
-                        @endif
+                        @auth
+                            @if(auth()->user()->admin)
+                                <div class="user-actions">
+                                    {{-- Formulario para cambiar rol --}}
+                                    <form method="POST" action="{{ route('users.toggle-role', $user) }}" style="display: inline;">
+                                        @csrf
+                                        <input type="hidden" name="admin" value="{{ $user->admin ? '0' : '1' }}">
+                                        <button type="submit" class="btn btn-sm {{ $user->admin ? 'btn-warning' : 'btn-success' }}" 
+                                                onclick="return confirm('¿Estás seguro de que quieres cambiar el rol de este usuario?')">
+                                            {{ $user->admin ? 'Quitar Admin' : 'Hacer Admin' }}
+                                        </button>
+                                    </form>
+                                    
+                                    {{-- Formulario para eliminar --}}
+                                    <form method="POST" action="{{ route('users.destroy', $user) }}" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger" 
+                                                onclick="return confirm('¿Estás seguro de que quieres eliminar este usuario?')">
+                                            Eliminar
+                                        </button>
+                                    </form>
+                                </div>
+                            @endif
+                        @endauth
                     </div>
                 @endforeach
             </div>

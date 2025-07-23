@@ -219,52 +219,8 @@
             </form>
         </div>
 
-        {{-- Lista de usuarios para gestionar --}}
-        <div class="users-management">
-            <h3>Gestionar Usuarios</h3>
-            @if($users->count() > 0)
-                <div class="users-grid">
-                    @foreach($users as $userItem)
-                        <div class="user-card">
-                            @if($userItem->image)
-                                <img src="{{ Storage::url($userItem->image) }}" alt="User image" class="user-image">
-                            @endif
-                            <h4>{{ $userItem->name }}</h4>
-                            <p><strong>Email:</strong> {{ $userItem->email }}</p>
-                            <p><strong>Role:</strong> 
-                                <span class="role-badge {{ $userItem->admin ? 'admin' : 'user' }}">
-                                    {{ $userItem->admin ? 'Admin' : 'User' }}
-                                </span>
-                            </p>
-                            
-                            <div class="user-actions">
-                                {{-- Formulario para cambiar rol --}}
-                                <form method="POST" action="{{ route('users.toggle-role', $userItem) }}" style="display: inline;">
-                                    @csrf
-                                    <input type="hidden" name="admin" value="{{ $userItem->admin ? '0' : '1' }}">
-                                    <button type="submit" class="btn btn-sm {{ $userItem->admin ? 'btn-warning' : 'btn-success' }}" 
-                                            onclick="return confirm('¿Estás seguro de que quieres cambiar el rol de este usuario?')">
-                                        {{ $userItem->admin ? 'Quitar Admin' : 'Hacer Admin' }}
-                                    </button>
-                                </form>
-                                
-                                {{-- Formulario para eliminar --}}
-                                <form method="POST" action="{{ route('users.destroy', $userItem) }}" style="display: inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" 
-                                            onclick="return confirm('¿Estás seguro de que quieres eliminar este usuario?')">
-                                        Eliminar
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            @else
-                <p>No hay usuarios registrados.</p>
-            @endif
-        </div>
+      
+       
     </div>
     @endif
 </div>

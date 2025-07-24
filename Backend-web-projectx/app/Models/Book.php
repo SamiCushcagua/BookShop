@@ -30,7 +30,7 @@ class Book extends Model
         'price' => 'decimal:2',
         'stock' => 'integer',
         'publication_year' => 'integer',
-        'is_available' => 'boolean',
+        'is_available' => 'integer',
     ];
 
     /**

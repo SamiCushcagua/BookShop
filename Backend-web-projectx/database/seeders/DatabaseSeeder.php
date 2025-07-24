@@ -24,5 +24,11 @@ class DatabaseSeeder extends Seeder
             'about' => 'Admin',
         
         ]);
+
+        $this->call([
+            FAQSeeder::class,
+        ]);
+
+        
     }
 }

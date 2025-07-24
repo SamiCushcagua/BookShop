@@ -18,9 +18,12 @@
                     <a href="{{ route('start') }}">Start</a>
                     <a href="{{ route('allUsers') }}">All Users</a>
                     <a href="{{ route('dashboard') }}">Dashboard</a>
+                    <a href="{{ route('faq.index') }}">FAQ</a>
+
                     @auth
                     <a href="{{ route('addBook') }}">Add Book</a>
                     <a href="{{ route('profiel') }}">Profile</a>
+                    <a href="{{ route('faq.admin') }}">addFAQ</a>
                     @endauth
 
 

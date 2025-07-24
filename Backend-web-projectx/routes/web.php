@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\FAQController;
 
 Route::get('/', function () {
     return view('start');
@@ -41,6 +42,27 @@ Route::middleware('auth')->group(function () {
         return view('view.profile');
     })->name('view.profile');
 });
+
+
+
+// Rutas públicas (para todos)
+Route::get('/faq', [FAQController::class, 'index'])->name('faq.index');
+// Ruta para administrar FAQ (solo admin)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/faq/admin', [FAQController::class, 'admin'])->name('faq.admin');
+});
+
+// Rutas de administración (solo admins)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/faq/create', [FAQController::class, 'create'])->name('faq.create');
+    Route::post('/faq', [FAQController::class, 'store'])->name('faq.store');
+    Route::get('/faq/category/create', [FAQController::class, 'createCategory'])->name('faq.create-category');
+    Route::post('/faq/category', [FAQController::class, 'storeCategory'])->name('faq.store-category');
+    Route::delete('/faq/{question}', [FAQController::class, 'destroy'])->name('faq.destroy');
+    Route::delete('/faq/category/{category}', [FAQController::class, 'destroyCategory'])->name('faq.destroy-category');
+});
+
+
 
 // AGREGAR ESTA LÍNEA AL FINAL:
 require __DIR__.'/auth.php';

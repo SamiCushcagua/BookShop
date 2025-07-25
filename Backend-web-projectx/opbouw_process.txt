@@ -157,7 +157,8 @@ Respuesta: "Te expliqué que puede ser por configuración SMTP, que el correo es
 numero: "24"
 titulo pregunta: "¿Está bien mi configuración de .env para Gmail?"
 pregunta oficial: "esta bien ?"
-Respuesta: "Revisé tu configuración y te recomendé quitar las comillas de las variables (excepto en la contraseña si tiene espacios), eliminar MAIL_SCHEME, y asegurarte de usar la contraseña de aplicación de Google."
+Respuesta: "Revisé tu configuración y te recomendé quitar las comillas de las variables (excepto en la contraseña si tiene espacios), 
+eliminar MAIL_SCHEME, y asegurarte de usar la contraseña de aplicación de Google."
 
 ==================================================
 

@@ -43,7 +43,11 @@ Route::middleware('auth')->group(function () {
     })->name('view.profile');
 });
 
+Route::get('contact_form', function () {
+    return view('Contact_form');
+})->name('contact_form');
 
+Route::post('contact_form', [App\Http\Controllers\ContactController::class, 'send'])->name('contact.send');
 
 // Rutas públicas (para todos)
 Route::get('/faq', [FAQController::class, 'index'])->name('faq.index');

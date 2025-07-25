@@ -25,6 +25,22 @@ class DatabaseSeeder extends Seeder
         
         ]);
 
+
+        User::factory()->create([
+            'name' => 'admin',
+            'email' => 'admin@ehb.be',
+            'admin' => true,
+            'password' => Hash::make('Password!321'),
+            'birthdate' => '1990-01-01',
+            'about' => 'Admin',
+
+
+        
+        ]);
+
+
+
+
         $this->call([
             FAQSeeder::class,
         ]);

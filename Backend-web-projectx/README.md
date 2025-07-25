@@ -1,61 +1,215 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# BookShop - Laravel Backend Project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 📚 Overzicht
 
-## About Laravel
+BookShop is een Laravel-gebaseerde webapplicatie voor het beheren van een boekwinkel. Het systeem biedt functionaliteiten voor gebruikersbeheer, boekbeheer, FAQ-systeem en een contactformulier.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Functies
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Gebruikersbeheer
+- Registratie en inloggen van gebruikers
+- Admin-panel voor gebruikersbeheer
+- Profielbeheer met afbeeldingen
+- Rolgebaseerde toegang (admin/gebruiker)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Boekbeheer
+- CRUD-operaties voor boeken
+- Afbeelding upload voor boeken
+- Categorieën en beschrijvingen
+- Zoek- en filterfunctionaliteiten
 
-## Learning Laravel
+### FAQ Systeem
+- Categorieën en vragen/antwoorden
+- Admin-panel voor FAQ-beheer
+- Publieke weergave voor bezoekers
+- Dynamische toevoeging van nieuwe vragen
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Contactformulier
+- Contactformulier voor bezoekers
+- Automatische e-mailnotificaties naar admin
+- SMTP-configuratie voor Gmail
+- Validatie en foutafhandeling
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 🛠️ Technische Vereisten
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- PHP 8.1 of hoger
+- Laravel 10.x
+- MySQL 5.7 of hoger
+- Composer
+- Node.js en NPM (voor frontend assets)
 
-## Laravel Sponsors
+## 📦 Installatie
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 1. Repository Klonen
+```bash
+git clone [repository-url]
+cd BookShop/Backend-web-projectx
+```
 
-### Premium Partners
+### 2. Dependencies Installeren
+```bash
+composer install
+npm install
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 3. Environment Configuratie
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-## Contributing
+### 4. Database Configuratie
+Configureer je database-instellingen in `.env`:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=bookshop
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 5. Database Migraties en Seeders
+```bash
+php artisan migrate:fresh --seed
+```
 
-## Code of Conduct
+### 6. Storage Link
+```bash
+php artisan storage:link
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 7. Applicatie Starten
+```bash
+php artisan serve
+```
 
-## Security Vulnerabilities
+De applicatie is nu beschikbaar op `http://localhost:8000`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 📧 E-mail Configuratie
 
-## License
+Voor het contactformulier, configureer je SMTP-instellingen in `.env`:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=jouw-email@gmail.com
+MAIL_PASSWORD=jouw-app-wachtwoord
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=jouw-email@gmail.com
+MAIL_FROM_NAME="BookShop-CEI"
+```
+
+**Belangrijk**: Gebruik een Gmail App-wachtwoord als je 2FA hebt ingeschakeld.
+
+## 👥 Standaard Gebruikers
+
+Na het uitvoeren van de seeders zijn de volgende gebruikers beschikbaar:
+
+### Admin Gebruiker
+- **Email**: admin@admin.com
+- **Wachtwoord**: admin123*
+- **Rol**: Administrator
+
+## 🎨 Frontend
+
+### Kleurenschema
+Het project gebruikt een warm kleurenschema:
+- **Parchment**: #F2E9D8
+- **Sand**: #D7C4A3
+- **Olive**: #C2CBA3
+- **Sage**: #8B9375
+- **Bark**: #6D5C45
+- **Olivewood**: #2E2E20
+
+### Responsive Design
+- Mobile-first approach
+- Flexbox en CSS Grid
+- Responsive navigatie
+- Touch-vriendelijke interfaces
+
+## 📁 Projectstructuur
+
+```
+BookShop/
+├── app/
+│   ├── Http/Controllers/
+│   │   ├── FAQController.php
+│   │   ├── ContactController.php
+│   │   └── ...
+│   ├── Models/
+│   │   ├── FAQCategory.php
+│   │   ├── FAQQuestion.php
+│   │   └── ...
+│   └── ...
+├── database/
+│   ├── migrations/
+│   │   ├── create_faq_categories_table.php
+│   │   ├── create_faq_questions_table.php
+│   │   └── ...
+│   └── seeders/
+│       ├── FAQSeeder.php
+│       ├── DatabaseSeeder.php
+│       └── ...
+├── resources/
+│   └── views/
+│       ├── auth/
+│       │   ├── login.blade.php
+│       │   └── register.blade.php
+│       ├── faq/
+│       │   ├── index.blade.php
+│       │   ├── admin.blade.php
+│       │   └── ...
+│       ├── emails/
+│       │   └── contact.blade.php
+│       └── ...
+└── public/
+    └── css/
+        └── style.css
+```
+
+## 🔧 Beheer
+
+### Admin Panel Toegang
+1. Log in met admin@admin.com
+2. Navigeer naar de admin-secties in de navigatie
+3. Beheer gebruikers, boeken, FAQ's en meer
+
+### FAQ Beheer
+- Ga naar `/faq/admin` (alleen voor admins)
+- Voeg nieuwe categorieën toe
+- Voeg vragen en antwoorden toe
+- Verwijder bestaande items
+
+### Gebruikersbeheer
+- Bekijk alle gebruikers in het admin-panel
+- Bewerk gebruikersprofielen
+- Verwijder gebruikers indien nodig
+
+## 🐛 Troubleshooting
+
+### Veelvoorkomende Problemen
+
+#### Database Migraties
+```bash
+# Als migraties falen
+php artisan migrate:fresh
+php artisan config:clear
+```
+
+
+
+## 👨‍💻 Ontwikkelaar
+
+**Sami A.V.**
+- Email: sami.a.v@hotmail.com
+- Project: BookShop Backend Web Application
+
+## 📞 Contact
+
+Voor vragen of ondersteuning:
+- Email: sami.a.v@hotmail.com
+- Project Repository: [GitHub Repository URL]
+
+---

@@ -21,9 +21,11 @@
                     <a href="{{ route('faq.index') }}">FAQ</a>
                     <a href="{{ route('contact_form') }}">Contact Form</a>
                     @auth
+                    @if (Auth::user()->admin)
                     <a href="{{ route('addBook') }}">Add Book</a>
                     <a href="{{ route('profiel') }}">Profile</a>
                     <a href="{{ route('faq.admin') }}">addFAQ</a>
+                    @endif
                     @endauth
 
 

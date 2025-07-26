@@ -27,11 +27,6 @@
             <textarea name="description" id="description">{{ old('description') }}</textarea>
         </div>
         
-        <div class="form-group">
-            <label for="order">Orden (opcional)</label>
-            <input type="number" name="order" id="order" value="{{ old('order', 0) }}" min="0">
-        </div>
-        
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Crear Categoría</button>
             <a href="{{ route('faq.index') }}" class="btn btn-secondary">Cancelar</a>

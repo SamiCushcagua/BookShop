@@ -15,7 +15,7 @@
                         
                             @if($book->cover_image)
                                 <a class="user-image-link">
-                                <img src="{{ Storage::url($book->cover_image) }}" alt="Portada" class="book-image">
+                                <img src="{{ asset('storage/' . $book->cover_image) }}" alt="Portada" class="book-image">
                                 </a>
                             @else
                                 <div class="user-placeholder">

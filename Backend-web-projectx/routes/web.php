@@ -5,10 +5,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\FAQController;
+use App\Http\Controllers\NewsController;
 
-Route::get('/', function () {
-    return view('start');
-})->name('start');
+// Ruta principal - muestra nieuwtjes
+Route::get('/', [NewsController::class, 'start'])->name('start');
 
 Route::get('start', function () {
     return view('view.start');
@@ -36,7 +36,6 @@ Route::middleware('auth')->group(function () {
     Route::get('addBook', function () {
         return view('addBook');
     })->name('addBook');
-    
     
     Route::get('profile', function () {
         return view('view.profile');
@@ -66,7 +65,18 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/faq/category/{category}', [FAQController::class, 'destroyCategory'])->name('faq.destroy-category');
 });
 
+// Rutas para nieuwtjes - IMPORTANTE: las rutas específicas (create) DEBEN ir ANTES de las rutas con parámetros ({newsItem})
+// Rutas de administración para nieuwtjes (solo admins) - PRIMERO
+Route::middleware(['auth'])->group(function () {
+    Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
+    Route::post('/news', [NewsController::class, 'store'])->name('news.store');
+    Route::get('/news/{newsItem}/edit', [NewsController::class, 'edit'])->name('news.edit');
+    Route::put('/news/{newsItem}', [NewsController::class, 'update'])->name('news.update');
+    Route::delete('/news/{newsItem}', [NewsController::class, 'destroy'])->name('news.destroy');
+});
 
+// Rutas públicas para nieuwtjes - DESPUÉS
+Route::get('/news/{newsItem}', [NewsController::class, 'show'])->name('news.show');
 
 // AGREGAR ESTA LÍNEA AL FINAL:
 require __DIR__.'/auth.php';

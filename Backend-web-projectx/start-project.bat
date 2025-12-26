@@ -16,9 +16,15 @@ if not exist "C:\xampp\xampp-control.exe" (
     exit /b 1
 )
 
-echo [2/6] Iniciando XAMPP Control Panel...
-start "" "C:\xampp\xampp-control.exe"
-timeout /t 2 /nobreak >nul
+echo [2/6] Verificando si XAMPP Control Panel ya esta abierto...
+tasklist /FI "IMAGENAME eq xampp-control.exe" 2>NUL | find /I /N "xampp-control.exe">NUL
+if "%ERRORLEVEL%"=="0" (
+    echo XAMPP Control Panel ya esta abierto
+) else (
+    echo Abriendo XAMPP Control Panel...
+    start "" "C:\xampp\xampp-control.exe"
+    timeout /t 2 /nobreak >nul
+)
 
 echo [3/6] Verificando servicios...
 sc query "Apache2.4" | find "RUNNING" >nul
@@ -64,9 +70,10 @@ echo    SERVIDOR INICIADO EXITOSAMENTE
 echo ========================================
 echo.
 echo URL: http://localhost:8000
+echo Proyecto: BookShop
+echo Base de datos: CEI-BOOKSHOP
 echo Usuarios Admin disponibles:
-echo   - admin@admin.com / admin123*
-echo   - admin@ehb.be / Password!321
+
 echo.
 echo Presiona Ctrl+C para detener el servidor
 echo.

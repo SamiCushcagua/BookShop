@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\FAQCategory;
 use App\Models\FAQQuestion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FAQController extends Controller
 {
 
     public function admin()
 {
-    if (!auth()->user()->admin) {
+    if (!Auth::user()->admin) {
         abort(403, 'No tienes permisos para acceder a esta página.');
         // O puedes redirigir:
         // return redirect()->route('faq.index')->with('error', 'No tienes permisos');
